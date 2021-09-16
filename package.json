@@ -16,7 +16,7 @@
     "get-gist": "./dist/bin/index.js"
   },
   "publishConfig": {
-    "registry": ""
+    "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
     "@octokit/core": "^3.5.1",

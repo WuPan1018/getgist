@@ -1,0 +1,9 @@
+.gitignore
+coverage
+.idea
+jest.config.js
+*.tgz
+*.log
+tsconfig.json
+src
+__test__
