@@ -43,7 +43,7 @@ export async function getDownloadGistFiles(token: string): Promise<GistRes[]> {
 }
 
 const commander = createCommand();
-commander.name(require('../../package.json').name);
+commander.name('get-gist');
 commander.version(require('../../package.json').version);
 
 commander.command('login')

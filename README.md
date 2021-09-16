@@ -8,7 +8,7 @@
 ## Usage
 
 ```
-Usage: getgist [options] [command]
+Usage: get-gist [options] [command]
 
 Options:
   -V, --version   output the version number

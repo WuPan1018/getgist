@@ -1,16 +1,19 @@
 {
-  "name": "getgist",
+  "name": "@kyuuseiryuu/getgist",
   "version": "1.0.0",
   "description": "get gist file",
   "author": "kyuuseiryuu",
   "license": "MIT",
   "private": false,
+  "repository": {
+    "url": "https://github.com/kyuuseiryuu/getgist"
+  },
   "scripts": {
     "build": "npx rimraf ./dist && npx --package=typescript tsc -p . && chmod +x ./dist/bin/index.js",
     "test": "jest"
   },
   "bin": {
-    "getgist": "./dist/bin/index.js"
+    "get-gist": "./dist/bin/index.js"
   },
   "publishConfig": {
     "registry": ""
