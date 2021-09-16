@@ -5,7 +5,20 @@
 但是，我没有在 GitHub 官方的 [gh](https://cli.github.com/) 命令里面找到可以下载 gist 的命令。  
 这需求，有点小众，自己也不一定经常用。但还是试着玩一下写个命令行工具吧。
 
-## Usage
+# Usage
+
+## npx 执行
+
+1. 指定源
+```shell
+echo "@kyuuseiryuu:registry=https://npm.pkg.github.com" >> ~/.npmrc
+```
+2. 执行 npx
+```shell
+npx --package @kyuuseiryuu/getgist get-gist
+```
+
+## 命令行参数
 
 ```
 Usage: get-gist [options] [command]
