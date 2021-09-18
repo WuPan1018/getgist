@@ -18,13 +18,13 @@ export async function requestToken() {
   return token;
 }
 
-export async function getDownloadGistFiles(token: string): Promise<GistRes[]> {
+async function getChoice(token: string): Promise<Choice[]> {
   const octokit = new Octokit({ auth: token });
   const result = await octokit.request('GET /gists').catch(() => {
     console.log('not login');
     process.exit();
   });
-  const choices: Choice[] = result.data.map(e => {
+  return result.data.map(e => {
     const fileName = Object.keys(e.files)[0];
     return {
       title: `${[fileName, e.description].map(s => s?.trim()).filter(Boolean).join(' - ')}`,
@@ -32,14 +32,31 @@ export async function getDownloadGistFiles(token: string): Promise<GistRes[]> {
       value: e,
     } as Choice;
   });
+}
+
+async function getGistRes(choices: Choice[]): Promise<GistRes[]> {
   return (await prompts([
     {
       name: 'value',
       message: 'Select gist',
       type: "multiselect",
       choices,
+      validate: prev => {
+        console.log({ prev });
+        return prev.length > 0;
+      },
     }
-  ], { onCancel: () => process.exit()})).value;
+  ], { onCancel: () => process.exit()})).value
+}
+
+export async function getDownloadGistFiles(token: string): Promise<GistRes[]> {
+  const choices = await getChoice(token);
+  let value = await getGistRes(choices);
+  while (value.length === 0) {
+    console.log('Not files has been selected');
+    value = (await getGistRes(choices));
+  }
+  return value;
 }
 
 const commander = createCommand();
