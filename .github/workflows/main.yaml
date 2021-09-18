@@ -9,11 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@kyuuseiryuu'
       - name: install
-        run: npm install
+        run: yarn
       - name: build
-        run: npm run build
+        run: yarn build
       - name: publish
-        run: npm publish
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
